@@ -6,7 +6,9 @@
 # Консультации
 
 11.11.25 20:00-21:30 https://telemost.yandex.ru/j/28475856611810
+
 13.11.25 20:00-21:30 https://telemost.yandex.ru/j/95412169300997
+
 15.11.25 11:00-12:00 https://telemost.yandex.ru/j/15249630413367
 
 
