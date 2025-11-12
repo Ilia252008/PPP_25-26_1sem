@@ -29,16 +29,13 @@ def int_to_roman(num):
             num -= val
     return result
 
-# Ввод данных
+
 a = input().strip()
 b = input().strip()
 op = input().strip()
-
-# Преобразование
 x = roman_to_int(a)
 y = roman_to_int(b)
 
-# Вычисление
 if op == '+':
     res = x + y
 elif op == '-':
@@ -47,8 +44,6 @@ elif op == '*':
     res = x * y
 elif op == '/':
     res = x // y
-
-# Проверка и вывод
 if res < 1:
     print("Ошибка")
 else:
