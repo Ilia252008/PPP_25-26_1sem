@@ -1,5 +1,3 @@
-
-
 def convert_roman_to_arabic(roman_num):
     roman_dict = {
         'I': 1, 'V': 5, 'X': 10, 
@@ -91,6 +89,7 @@ def calculate_roman_numbers():
     else:
         print("Ошибка при преобразовании результата")
 
-if __name__ == "__main__":
-    calculate_roman_numbers()
+calculate_roman_numbers()
+
+
 
