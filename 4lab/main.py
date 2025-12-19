@@ -6,21 +6,21 @@ import json
 
 # Базовый класс для логов
 class LogRecord(ABC):
-    def init(self, level, time, message):
+    def __init__(self, level, time, message):
         self.level = level
         self.time = time
         self.message = message
-    
+
     def parse(self):
         pass
 
-    def str(self):
+    def __str__(self):
         return f"[{self.time.strftime('%Y-%m-%d %H:%M:%S')}] {self.level} {self.message}"
 
 
 # Формат: fmt1 [2025-10-01 12:34:56] INFO: System started
 class Format1Log(LogRecord):
-    def init(self, raw):
+    def __init__(self, raw):
         self.raw = raw
         self.parse()
 
@@ -31,14 +31,14 @@ class Format1Log(LogRecord):
             level = parts[3][:-1]
             message = " ".join(parts[4:])
             time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
-            super().init(level, time, message)
+            super().__init__(level, time, message)
         except:
             raise ValueError("Неверный формат fmt1")
 
 
 # Формат: fmt2 ERROR;2025/10/01-12:35;Disk full
 class Format2Log(LogRecord):
-    def init(self, raw):
+    def __init__(self, raw):
         self.raw = raw
         self.parse()
 
@@ -47,14 +47,14 @@ class Format2Log(LogRecord):
             _, rest = self.raw.split(" ", 1)
             level, time_str, message = rest.split(";")
             time = datetime.strptime(time_str, "%Y/%m/%d-%H:%M")
-            super().init(level, time, message)
+            super().__init__(level, time, message)
         except:
             raise ValueError("Неверный формат fmt2")
 
 
 # Формат: json {"level": "...", "time": "...", "msg": "..."}
 class JsonLog(LogRecord):
-    def init(self, raw):
+    def __init__(self, raw):
         self.raw = raw
         self.parse()
 
@@ -64,14 +64,14 @@ class JsonLog(LogRecord):
             level = data["level"]
             time = datetime.fromisoformat(data["time"])
             message = data["msg"]
-            super().init(level, time, message)
+            super().__init__(level, time, message)
         except:
             raise ValueError("Неверный JSON лог")
 
 
 # Менеджер для работы с логами
 class LogManager:
-    def init(self):
+    def __init__(self):
         self.logs = []  # Храним все логи здесь
 
     def add_log(self, raw):
